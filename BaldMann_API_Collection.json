@@ -1,0 +1,889 @@
+{
+  "info": {
+    "name": "BaldMann Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {}
+            ],
+            "url": {
+              "raw": "http://localhost:5000/auth/login",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {}
+            ],
+            "url": {
+              "raw": "http://localhost:5000/auth/register",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/products",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "products"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Stock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/stock",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "stock"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/users",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/orders",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "orders"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Warranty Cards",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/warranty-cards",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "warranty-cards"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Reports",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/reports",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "reports"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Get Invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/invoices",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "invoices"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Search",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/search",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "search"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/notifications",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "notifications"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/audit-logs",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "audit-logs"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/dashboard",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "dashboard"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Incentives",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/incentives",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "incentives"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/points",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "points"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Location",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/location",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "location"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Shift Alerts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/admin/shift-alerts",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "admin",
+                "shift-alerts"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Distributor",
+      "item": [
+        {
+          "name": "Catalog",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/distributor/catalog",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "distributor",
+                "catalog"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Order",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/distributor/order",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "distributor",
+                "order"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Stock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/distributor/stock",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "distributor",
+                "stock"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accountant",
+      "item": [
+        {
+          "name": "Invoice",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/accountant/invoice/68752d50d0cee31553856b24",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "accountant",
+                "invoice",
+                "68752d50d0cee31553856b24"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Worker",
+      "item": [
+        {
+          "name": "Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/worker/attendance",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "worker",
+                "attendance"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Production",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/worker/production",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "worker",
+                "production"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Shift Alerts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/worker/shift-alerts",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "worker",
+                "shift-alerts"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "FieldExecutive",
+      "item": [
+        {
+          "name": "Followups",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/field-executive/followups",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "field-executive",
+                "followups"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "DVR",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/fieldExecutive/dvr",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "fieldExecutive",
+                "dvr"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Delivery",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/fieldExecutive/delivery",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "fieldExecutive",
+                "delivery"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "ExternalSeller",
+      "item": [
+        {
+          "name": "Incentives",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/user/incentives",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "user",
+                "incentives"
+              ]
+            },
+            "body": {}
+          }
+        },
+        {
+          "name": "Points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/user/points",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "user",
+                "points"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Location (Common)",
+      "item": [
+        {
+          "name": "Submit Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/user/location",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "user",
+                "location"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "View Location",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/user/location",
+              "host": [
+                "http://localhost:5000"
+              ],
+              "path": [
+                "user",
+                "location"
+              ]
+            },
+            "body": {}
+          }
+        }
+      ]
+    }
+  ]
+}
