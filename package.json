@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "migrate": "prisma migrate deploy",
     "test": "jest",
     "t1h": "npx nodemon index.js"
   },
