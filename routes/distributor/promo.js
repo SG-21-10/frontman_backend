@@ -97,5 +97,30 @@ router.post('/validate', promoCodeController.validatePromoCode);
  */
 router.get('/active', promoCodeController.getActivePromoCodes);
 
+/**
+ * @swagger
+ * /distributor/promo/by-code/{code}:
+ *   get:
+ *     summary: Get promo code details by code
+ *     tags: [Distributor Promo Codes]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: code
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Promo code string
+ *     responses:
+ *       200:
+ *         description: Promo code details
+ *       404:
+ *         description: Promo code not found
+ *       500:
+ *         description: Server error
+ */
+router.get('/by-code/:code', promoCodeController.getPromoByCode);
+
 module.exports = router;
 

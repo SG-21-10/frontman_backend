@@ -62,6 +62,32 @@ router.get('/', userController.getAllUsers);
  */
 router.get('/:id', userController.getUserById);
 
+// Username-based endpoints
+/**
+ * @swagger
+ * /admin/users/by-username/{username}:
+ *   get:
+ *     summary: Get a single user by username
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Username (name field)
+ *     responses:
+ *       200:
+ *         description: User details
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Server error
+ */
+router.get('/by-username/:username', userController.getUserByUsername);
+
 /**
  * @swagger
  * /admin/users:
@@ -142,6 +168,43 @@ router.put('/:id', userController.updateUser);
 
 /**
  * @swagger
+ * /admin/users/by-username/{username}:
+ *   put:
+ *     summary: Update user details by username
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Username (name field)
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User updated
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Server error
+ */
+router.put('/by-username/:username', userController.updateUserByUsername);
+
+/**
+ * @swagger
  * /admin/users/{id}:
  *   delete:
  *     summary: Delete a user by ID
@@ -164,5 +227,30 @@ router.put('/:id', userController.updateUser);
  *         description: Server error
  */
 router.delete('/:id', userController.deleteUser);
+
+/**
+ * @swagger
+ * /admin/users/by-username/{username}:
+ *   delete:
+ *     summary: Delete a user by username
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Username (name field)
+ *     responses:
+ *       200:
+ *         description: User deleted
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Server error
+ */
+router.delete('/by-username/:username', userController.deleteUserByUsername);
 
 module.exports = router;

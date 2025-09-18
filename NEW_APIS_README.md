@@ -328,3 +328,60 @@ All new Plumber APIs require:
 - Valid JWT token in Authorization header: `Bearer <token>`
 - Plumber role permissions
 - Middleware: `authenticate` and `authorizeRoles('Plumber')`
+
+## Identifier-based Endpoints Added (Non-breaking)
+
+The following endpoints were added alongside existing ID-based ones to support lookups by name/code/serial without removing any current APIs.
+
+### Users (Admin)
+
+- GET `/admin/users/by-username/:username`
+  - Fetch a user by `name`.
+- PUT `/admin/users/by-username/:username`
+  - Update a user by `name` (supports changing name, phone, role, password). Role-change adjusts role-specific records.
+- DELETE `/admin/users/by-username/:username`
+  - Delete a user by `name` with role-specific cleanup.
+
+### Products (Admin)
+
+- GET `/admin/products/by-name/:name`
+  - Fetch product by `name`.
+- PUT `/admin/products/by-name/:name`
+  - Update product by `name` (can also change name).
+- DELETE `/admin/products/by-name/:name`
+  - Delete product by `name` with related cleanup: `warrantyCard`, `orderItem`.
+
+### Categories (Distributor)
+
+- GET `/distributor/categories/by-name/:name`
+  - Fetch category by `name` including product summary.
+- PUT `/distributor/categories/by-name/:name`
+  - Update category by `name` (validates uniqueness on rename).
+- DELETE `/distributor/categories/by-name/:name`
+  - Delete category by `name` (blocked if products exist).
+
+### Warranty Cards (Admin)
+
+- GET `/admin/warranty-cards/by-serial/:serialNumber`
+  - Fetch warranty card by `serialNumber`.
+
+### Promo Codes (Distributor)
+
+- GET `/distributor/promo/by-code/:code`
+  - Fetch promo code by `code`.
+
+### Shift Alerts (Admin)
+
+- GET `/admin/shift-alerts`
+  - Fetch all shift alerts (new endpoint). Existing create remains: `POST /admin/shift-alerts`.
+
+### Stock (Admin)
+
+- DELETE `/admin/stock/:id`
+  - Delete stock entry by ID (new endpoint). Existing create/get/update remain unchanged.
+
+## Notes on Behavior
+
+- Name-based endpoints use exact match on `name` (or `code`/`serialNumber`).
+- No existing routes were removed or altered.
+- Swagger annotations were added for all new routes.

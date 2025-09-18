@@ -59,6 +59,21 @@ const productController = {
     }
   },
 
+  // READ ONE by NAME
+  getProductByName: async (req, res) => {
+    const { name } = req.params;
+    try {
+      const product = await prisma.product.findFirst({ where: { name } });
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      res.json(product);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error fetching product' });
+    }
+  },
+
   // UPDATE
   updateProduct: async (req, res) => {
     const { id } = req.params;
@@ -77,6 +92,29 @@ const productController = {
     }
   },
 
+  // UPDATE by NAME
+  updateProductByName: async (req, res) => {
+    const { name } = req.params;
+    const { price, stockQuantity, warrantyPeriodInMonths, name: newName } = req.body;
+    try {
+      const product = await prisma.product.findFirst({ where: { name } });
+      if (!product) return res.status(404).json({ message: 'Product not found' });
+      const updated = await prisma.product.update({
+        where: { id: product.id },
+        data: {
+          name: newName !== undefined ? newName : undefined,
+          price,
+          stockQuantity,
+          warrantyPeriodInMonths
+        }
+      });
+      res.json({ message: 'Product updated', product: updated });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error updating product' });
+    }
+  },
+
   // DELETE
   deleteProduct: async (req, res) => {
     try {
@@ -87,6 +125,23 @@ const productController = {
       await prisma.orderItem.deleteMany({ where: { productId } });
       // Now delete the product
       const result = await prisma.product.delete({ where: { id: productId } });
+      res.json({ message: 'Product deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json({ message: 'Internal server error', error: error.message });
+    }
+  },
+
+  // DELETE by NAME
+  deleteProductByName: async (req, res) => {
+    try {
+      const { name } = req.params;
+      const product = await prisma.product.findFirst({ where: { name } });
+      if (!product) return res.status(404).json({ message: 'Product not found' });
+      const productId = product.id;
+      await prisma.warrantyCard.deleteMany({ where: { productId } });
+      await prisma.orderItem.deleteMany({ where: { productId } });
+      await prisma.product.delete({ where: { id: productId } });
       res.json({ message: 'Product deleted successfully' });
     } catch (error) {
       console.error('Error deleting product:', error);

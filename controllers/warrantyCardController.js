@@ -39,6 +39,24 @@ const warrantyCardController = {
       res.status(500).json({ message: 'Failed to fetch warranty card' });
     }
   }
+  ,
+  // GET /admin/warranty-cards/by-serial/:serialNumber
+  getWarrantyCardBySerial: async (req, res) => {
+    try {
+      const { serialNumber } = req.params;
+      const card = await prisma.warrantyCard.findUnique({
+        where: { serialNumber },
+        include: {
+          product: { select: { id: true, name: true, price: true } }
+        }
+      });
+      if (!card) return res.status(404).json({ message: 'Warranty card not found' });
+      res.json(card);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Failed to fetch warranty card' });
+    }
+  }
 };
 
 module.exports = warrantyCardController; 

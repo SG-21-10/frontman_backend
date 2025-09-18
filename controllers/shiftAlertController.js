@@ -23,6 +23,19 @@ const shiftAlertController = {
     }
   },
 
+  // Admin/SalesManager get all alerts
+  getAllAlerts: async (req, res) => {
+    try {
+      const alerts = await prisma.shiftAlert.findMany({
+        orderBy: { createdAt: 'desc' }
+      });
+      res.json(alerts);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Failed to fetch alerts' });
+    }
+  },
+
   // Worker gets their alerts
   getMyAlerts: async (req, res) => {
     try {

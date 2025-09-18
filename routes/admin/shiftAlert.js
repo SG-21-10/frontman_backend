@@ -52,4 +52,20 @@ router.use(authorizeRoles('Admin', 'SalesManager'));
  */
 router.post('/', shiftAlertController.createAlert);
 
+/**
+ * @swagger
+ * /admin/shift-alerts:
+ *   get:
+ *     summary: Get all shift alerts
+ *     tags: [Shift Alerts]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of shift alerts
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/', shiftAlertController.getAllAlerts);
+
 module.exports = router;

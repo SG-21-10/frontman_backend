@@ -56,6 +56,32 @@ router.get('/', categoryController.getAllCategories);
  */
 router.get('/:id', categoryController.getCategoryById);
 
+// Name-based endpoints
+/**
+ * @swagger
+ * /distributor/categories/by-name/{name}:
+ *   get:
+ *     summary: Get category by name
+ *     tags: [Distributor Categories]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Category name
+ *     responses:
+ *       200:
+ *         description: Category details
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Server error
+ */
+router.get('/by-name/:name', categoryController.getCategoryByName);
+
 /**
  * @swagger
  * /distributor/categories:
@@ -127,6 +153,44 @@ router.put('/:id', categoryController.updateCategory);
 
 /**
  * @swagger
+ * /distributor/categories/by-name/{name}:
+ *   put:
+ *     summary: Update category by name
+ *     tags: [Distributor Categories]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Category name
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Category updated successfully
+ *       400:
+ *         description: Invalid input or name conflict
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Server error
+ */
+router.put('/by-name/:name', categoryController.updateCategoryByName);
+
+/**
+ * @swagger
  * /distributor/categories/{id}:
  *   delete:
  *     summary: Delete category
@@ -151,6 +215,33 @@ router.put('/:id', categoryController.updateCategory);
  *         description: Server error
  */
 router.delete('/:id', categoryController.deleteCategory);
+
+/**
+ * @swagger
+ * /distributor/categories/by-name/{name}:
+ *   delete:
+ *     summary: Delete category by name
+ *     tags: [Distributor Categories]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Category name
+ *     responses:
+ *       200:
+ *         description: Category deleted successfully
+ *       400:
+ *         description: Cannot delete category with existing products
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Server error
+ */
+router.delete('/by-name/:name', categoryController.deleteCategoryByName);
 
 module.exports = router;
 

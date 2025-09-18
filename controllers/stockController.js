@@ -73,6 +73,23 @@ const stockController = {
     }
   },
 
+  // Delete stock by ID
+  deleteStock: async (req, res) => {
+    try {
+      const { id } = req.params;
+      // Ensure stock exists
+      const existing = await prisma.stock.findUnique({ where: { id } });
+      if (!existing) {
+        return res.status(404).json({ message: 'Stock entry not found' });
+      }
+      await prisma.stock.delete({ where: { id } });
+      res.json({ message: 'Stock entry deleted' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error deleting stock entry' });
+    }
+  },
+
   // GET /distributor/stock
 getAssignedStock: async (req, res) => {
   try {

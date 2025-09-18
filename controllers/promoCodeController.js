@@ -159,6 +159,19 @@ const promoCodeController = {
       res.status(500).json({ message: 'Failed to fetch promo codes' });
     }
   }
+  ,
+  // GET promo by CODE (details)
+  getPromoByCode: async (req, res) => {
+    try {
+      const { code } = req.params;
+      const promo = await prisma.promoCode.findUnique({ where: { code } });
+      if (!promo) return res.status(404).json({ message: 'Promo code not found' });
+      res.json(promo);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Failed to fetch promo code' });
+    }
+  }
 };
 
 module.exports = promoCodeController;

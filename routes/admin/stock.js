@@ -121,4 +121,29 @@ router.put('/:id', stockController.updateStock);
  */
 router.delete('/cleanup-broken', stockController.cleanup);
 
+/**
+ * @swagger
+ * /admin/stock/{id}:
+ *   delete:
+ *     summary: Delete stock entry by ID
+ *     tags: [Stock]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the stock to delete
+ *     responses:
+ *       200:
+ *         description: Stock deleted
+ *       404:
+ *         description: Stock not found
+ *       500:
+ *         description: Server error
+ */
+router.delete('/:id', stockController.deleteStock);
+
 module.exports = router;

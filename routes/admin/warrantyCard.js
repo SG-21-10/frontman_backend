@@ -67,4 +67,29 @@ router.get('/', warrantyCardController.getAllWarrantyCards);
  */
 router.get('/:id', warrantyCardController.getWarrantyCardById);
 
+/**
+ * @swagger
+ * /admin/warranty-cards/by-serial/{serialNumber}:
+ *   get:
+ *     summary: Get warranty card details by serial number
+ *     tags: [WarrantyCards]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: serialNumber
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Warranty card serial number
+ *     responses:
+ *       200:
+ *         description: Warranty card details
+ *       404:
+ *         description: Warranty card not found
+ *       500:
+ *         description: Server error
+ */
+router.get('/by-serial/:serialNumber', warrantyCardController.getWarrantyCardBySerial);
+
 module.exports = router;

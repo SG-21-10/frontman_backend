@@ -88,6 +88,30 @@ router.get('/', productController.getAllProducts);
  */
 router.get('/:id', productController.getProductById);
 
+// Name-based endpoints
+/**
+ * @swagger
+ * /admin/products/by-name/{name}:
+ *   get:
+ *     summary: Get product by name
+ *     tags: [Admin Products]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Product name
+ *     responses:
+ *       200:
+ *         description: Product data
+ *       404:
+ *         description: Product not found
+ */
+router.get('/by-name/:name', productController.getProductByName);
+
 /**
  * @swagger
  * /admin/products/{id}:
@@ -128,6 +152,44 @@ router.put('/:id', productController.updateProduct);
 
 /**
  * @swagger
+ * /admin/products/by-name/{name}:
+ *   put:
+ *     summary: Update product by name
+ *     tags: [Admin Products]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Product name
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               stockQuantity:
+ *                 type: number
+ *               warrantyPeriodInMonths:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Product updated
+ *       404:
+ *         description: Product not found
+ */
+router.put('/by-name/:name', productController.updateProductByName);
+
+/**
+ * @swagger
  * /admin/products/{id}:
  *   delete:
  *     summary: Delete product by ID
@@ -148,6 +210,29 @@ router.put('/:id', productController.updateProduct);
  *         description: Product not found
  */
 router.delete('/:id', productController.deleteProduct);
+
+/**
+ * @swagger
+ * /admin/products/by-name/{name}:
+ *   delete:
+ *     summary: Delete product by name
+ *     tags: [Admin Products]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Product name
+ *     responses:
+ *       200:
+ *         description: Product deleted
+ *       404:
+ *         description: Product not found
+ */
+router.delete('/by-name/:name', productController.deleteProductByName);
 
 /**
  * @swagger

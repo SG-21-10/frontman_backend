@@ -58,6 +58,14 @@ enum PromoCodeStatus {
   Expired
 }
 
+enum InvoiceStatus {
+  Draft
+  Sent
+  Paid
+  Overdue
+  Cancelled
+}
+
 enum NotificationType {
   Info
   Alert
@@ -94,12 +102,27 @@ model User {
   carts           Cart[]
   audits          Audit[]
   notifications   Notification[]
+  financialLogs   FinancialLog[]
+}
+
+model Company {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String   @unique
+  description String?
+  logoUrl     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  admins      Admin[]
 }
 
 model Admin {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  userId   String @unique @db.ObjectId
-  user     User   @relation(fields: [userId], references: [id])
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String  @unique @db.ObjectId
+  companyId String? @db.ObjectId
+  user      User    @relation(fields: [userId], references: [id])
+  company   Company? @relation(fields: [companyId], references: [id])
 }
 
 model SalesManager {
@@ -267,13 +290,17 @@ model OrderItem {
 }
 
 model Invoice {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  orderId    String   @unique @db.ObjectId
-  invoiceDate DateTime
-  totalAmount Float
-  pdfUrl      String
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  orderId      String        @unique @db.ObjectId
+  invoiceDate  DateTime
+  totalAmount  Float
+  pdfUrl       String
+  status       InvoiceStatus @default(Draft)
+  sentAt       DateTime?
+  paidAt       DateTime?
+  dueDate      DateTime?
 
-  order      Order    @relation(fields: [orderId], references: [id])
+  order        Order         @relation(fields: [orderId], references: [id])
 }
 
 model LiveLocation {
@@ -403,4 +430,28 @@ model Notification {
   createdAt DateTime @default(now())
 
   @@index([userId, isRead])
+}
+
+enum FinancialLogType {
+  Income
+  Expense
+  Transfer
+  Adjustment
+}
+
+model FinancialLog {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  type        FinancialLogType
+  amount      Float
+  description String
+  category    String?
+  reference   String?          // Reference to order, invoice, or other related entity
+  createdBy   String           @db.ObjectId
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  createdByUser User @relation(fields: [createdBy], references: [id])
+
+  @@index([type, createdAt])
+  @@index([createdBy, createdAt])
 }
